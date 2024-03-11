@@ -1,0 +1,13 @@
+module compuertas_(A,B,C,S1,S2);
+input A;
+input B;
+input C;
+
+output S1;
+Output S2;
+
+assign S1 = A & B; // Asignamos
+assign S2 = ~C; //
+
+
+end module

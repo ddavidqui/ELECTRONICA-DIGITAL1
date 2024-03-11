@@ -1,0 +1,77 @@
+#! /usr/bin/vvp
+:ivl_version "11.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/system.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/v2005_math.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/va_math.vpi";
+S_0x5630b084b130 .scope module, "LAB01_tb" "LAB01_tb" 2 4;
+ .timescale -12 -12;
+v0x5630b085ee40_0 .var "A_tb", 0 0;
+v0x5630b085ef00_0 .var "B_tb", 0 0;
+v0x5630b085efa0_0 .var "Ci_tb", 0 0;
+v0x5630b085f040_0 .net "Co_", 0 0, L_0x5630b085f5b0;  1 drivers
+v0x5630b085f110_0 .net "S_", 0 0, L_0x5630b085f4c0;  1 drivers
+S_0x5630b084b2c0 .scope begin, "TEST_CASE" "TEST_CASE" 2 32, 2 32 0, S_0x5630b084b130;
+ .timescale -12 -12;
+S_0x5630b0810cf0 .scope module, "uut" "LAB01" 2 13, 3 2 0, S_0x5630b084b130;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "A";
+    .port_info 1 /INPUT 1 "B";
+    .port_info 2 /INPUT 1 "Ci";
+    .port_info 3 /OUTPUT 1 "S";
+    .port_info 4 /OUTPUT 1 "Co";
+L_0x5630b085f200 .functor XOR 1, v0x5630b085ee40_0, v0x5630b085ef00_0, C4<0>, C4<0>;
+L_0x5630b085f340 .functor AND 1, v0x5630b085ee40_0, v0x5630b085ef00_0, C4<1>, C4<1>;
+L_0x5630b085f3b0 .functor AND 1, L_0x5630b085f200, v0x5630b085efa0_0, C4<1>, C4<1>;
+L_0x5630b085f4c0 .functor XOR 1, L_0x5630b085f200, v0x5630b085efa0_0, C4<0>, C4<0>;
+L_0x5630b085f5b0 .functor OR 1, L_0x5630b085f340, L_0x5630b085f3b0, C4<0>, C4<0>;
+v0x5630b0810ed0_0 .net "A", 0 0, v0x5630b085ee40_0;  1 drivers
+v0x5630b085e830_0 .net "B", 0 0, v0x5630b085ef00_0;  1 drivers
+v0x5630b085e8f0_0 .net "Ci", 0 0, v0x5630b085efa0_0;  1 drivers
+v0x5630b085e990_0 .net "Co", 0 0, L_0x5630b085f5b0;  alias, 1 drivers
+v0x5630b085ea50_0 .net "S", 0 0, L_0x5630b085f4c0;  alias, 1 drivers
+v0x5630b085eb60_0 .net "and_1", 0 0, L_0x5630b085f340;  1 drivers
+v0x5630b085ec20_0 .net "and_2", 0 0, L_0x5630b085f3b0;  1 drivers
+v0x5630b085ece0_0 .net "xor_1", 0 0, L_0x5630b085f200;  1 drivers
+    .scope S_0x5630b084b130;
+T_0 ;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5630b085ee40_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5630b085ef00_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5630b085efa0_0, 0, 1;
+    %delay 100, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x5630b085ee40_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5630b085ef00_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x5630b085efa0_0, 0, 1;
+    %delay 100, 0;
+    %end;
+    .thread T_0;
+    .scope S_0x5630b084b130;
+T_1 ;
+    %fork t_1, S_0x5630b084b2c0;
+    %jmp t_0;
+    .scope S_0x5630b084b2c0;
+t_1 ;
+    %vpi_call 2 33 "$dumpfile", "LAB01.vcd" {0 0 0};
+    %vpi_call 2 34 "$dumpvars", 32'sb11111111111111111111111111111111, S_0x5630b0810cf0 {0 0 0};
+    %delay 600, 0;
+    %vpi_call 2 35 "$finish" {0 0 0};
+    %end;
+    .scope S_0x5630b084b130;
+t_0 %join;
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "LAB01_tb.v";
+    "./LAB01.v";
