@@ -1,14 +1,17 @@
-`include "LAB01.v"
-`timescale 1ps/1ps
+`include "LAB01.v" // Se llama el .v donde va la logica
+`timescale 1ps/1ps 
 
-module LAB01_tb();
+module LAB01_tb(); //EL modulo lo llamas como quieras aca lo llame igual que el archivo
 
-reg A_tb;
-reg B_tb;
-reg Ci_tb;
+reg A_tb; // Entradas de tu logica del archivo anterior
+reg B_tb; // mi segunda entrada
+reg Ci_tb; // Tercera entrada
 
-wire S_;
-wire Co_;
+wire S_; //ESTAN SON LAS SALIDAS
+wire Co_; //SALIDAS
+
+//AQUI LLAMAMOS LAS VARIBALES CON LA LOGICA ANTERIAR ASI PRIMERO LA DEL LAB.v antes un punto .ENTRADA(ENTRADA TESTBECH)-- ENTRADA DEL TEST
+//LA IDEA ES ENLAZARLO
 
 LAB01 uut(
     .A(A_tb),
@@ -17,17 +20,14 @@ LAB01 uut(
     .S(S_),
     .Co(Co_)
 );
-
+// AQUI LE DAMOS LOS VALORES QUE QUEREMOS
 initial begin
 A_tb = 0;
 B_tb = 0;
 Ci_tb = 0;
 #100;
 A_tb = 1;
-B_tb = 0;
-Ci_tb = 1;
-#100;
-end
+B_tb = 0;V EARA PODER CREAR EL VCD QUE ES LA SIMULACIÓN
 
 initial begin: TEST_CASE
     $dumpfile("LAB01.vcd");
